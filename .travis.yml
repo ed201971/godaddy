@@ -10,6 +10,7 @@ script:
  - docker build -t ed201971/godaddy accountservice/.
 
 deploy:
+  skip_cleanup: true
   provider: script
   script: bash docker_push
   on:
