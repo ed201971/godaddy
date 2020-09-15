@@ -4,7 +4,7 @@ import (
         "github.com/boltdb/bolt"
         "log"
         "strconv"
-        "github.com/goblog/accountservice/model"
+        "github.com/ed201971/godaddy/accountservice/model"
         "encoding/json"
         "fmt"
 )

@@ -4,10 +4,10 @@ import (
 	. "github.com/smartystreets/goconvey/convey"
 	"testing"
 	"net/http/httptest"
-        "github.com/goblog/accountservice/model"
+        "github.com/ed201971/godaddy/accountservice/model"
         "encoding/json"
         "fmt"
-        "github.com/goblog/accountservice/dbclient"
+        "github.com/ed201971/godaddy/accountservice/dbclient"
 )
 
 func TestGetAccountWrongPath(t *testing.T){
