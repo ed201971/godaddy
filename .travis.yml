@@ -9,4 +9,8 @@ script:
  - ./copyall.sh
  - docker build -t ed201971/godaddy accountservice/.
 
-
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
