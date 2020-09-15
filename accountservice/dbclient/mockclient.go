@@ -2,7 +2,7 @@ package dbclient
 
 import (
 	"github.com/stretchr/testify/mock"
-	"github.com/callistaenterprise/goblog/accountservice/model"
+	"github.com/goblog/accountservice/model"
 )
 
 // MockBoltClient is a mock implementation of a datastore client for testing purposes.

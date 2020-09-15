@@ -5,7 +5,7 @@ import (
 	"github.com/gorilla/mux"
 	"encoding/json"
 	"strconv"
-    "github.com/callistaenterprise/goblog/accountservice/dbclient"
+    "github.com/goblog/accountservice/dbclient"
     "fmt"
     "net"
 )
