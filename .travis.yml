@@ -1,7 +1,12 @@
 language: go
 go: 
     1.15.2
+services:
+ - docker
 
 script:
  - go test ./... 
  - ./copyall.sh
+ - docker build -t ed201971/godaddy accountservice/.
+
+
