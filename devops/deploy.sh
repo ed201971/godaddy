@@ -3,7 +3,7 @@
 set -e
 
 npm install -g npm
-npm install§
+npm install
 npm list
 npm run deploy
 
