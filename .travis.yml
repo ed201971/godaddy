@@ -15,4 +15,4 @@ deploy:
   provider: script
   script: bash devops/deploy.sh
   on:
-    branch: master
+    branch: flux 
