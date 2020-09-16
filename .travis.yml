@@ -1,13 +1,14 @@
 language: go
 go: 
     1.15.2
+
 services:
  - docker
 
 script:
  - go test ./... 
  - ./devops/copyall.sh
- - docker build -t ed201971/godaddy devops/.
+# - docker build -t ed201971/godaddy devops/.
 
 deploy:
   skip_cleanup: true
