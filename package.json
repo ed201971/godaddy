@@ -1,0 +1,27 @@
+{
+  "name": "godaddy",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "semantic-release": "semantic-release"
+  },
+  "devDependencies": {
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "semantic-release": "^17.1.1",
+    "semantic-release-docker": "2.2.0"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/git",
+      "semantic-release-docker"
+    ],
+    "publish": [
+      {
+        "path": "semantic-release-docker",
+        "name": "ed201971/godaddy"
+      }
+    ]
+  }
+}
