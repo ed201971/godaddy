@@ -6,7 +6,7 @@ services:
  - docker
 
 before_script:
-- nvm install v10.15.0
+- nvm install v10.18.0
 
 script:
  - go test ./... 
