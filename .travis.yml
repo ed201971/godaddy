@@ -5,6 +5,9 @@ go:
 services:
  - docker
 
+before_script:
+- nvm install v10.15.0
+
 script:
  - go test ./... 
  - ./devops/copyall.sh
