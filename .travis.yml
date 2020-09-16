@@ -5,6 +5,10 @@ go:
 services:
  - docker
 
+branches:
+  only:
+  - master
+
 before_script:
 - nvm install v10.18.0
 
