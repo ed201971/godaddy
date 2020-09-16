@@ -2,6 +2,9 @@ language: go
 go: 
     1.15.2
 
+env:
+ - COMMIT=${TRAVIS_COMMIT}
+
 services:
  - docker
 
