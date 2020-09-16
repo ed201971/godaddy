@@ -6,12 +6,12 @@ services:
 
 script:
  - go test ./... 
- - ./copyall.sh
- - docker build -t ed201971/godaddy accountservice/.
+ - ./devops/copyall.sh
+ - docker build -t ed201971/godaddy devops/.
 
 deploy:
   skip_cleanup: true
   provider: script
-  script: bash docker_push.sh
+  script: bash devops/deploy.sh
   on:
     branch: master
