@@ -4,7 +4,7 @@ set -e
 
 npm install -g npm
 npm install
-npm list
+#npm list
 npm run deploy
 
 docker build -t ed201971/godaddy devops/.
