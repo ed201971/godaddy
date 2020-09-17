@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: accountservice
-        image: ed201971/godaddy:47092840
+        image: ed201971/godaddy:e057995b
         #imagePullPolicy: Never
         ports:
         - containerPort: 6767
