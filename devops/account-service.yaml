@@ -10,7 +10,7 @@ metadata:
     flux.weave.works/tag.realtime: semver:~1.0
     #fluxcd.io/locked: 'true'
 spec:
-  replicas: 2 
+  replicas: 2
   selector:
     matchLabels:
       app: goapp
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: accountservice
-        image: ed201971/godaddy:latest
+        image: ed201971/godaddy:1.0.0
         #imagePullPolicy: Never
         ports:
         - containerPort: 6767
@@ -37,5 +37,5 @@ spec:
   selector:
     app: goapp
   ports:
-   - protocol: TCP
-     port: 6767
+  - protocol: TCP
+    port: 6767
