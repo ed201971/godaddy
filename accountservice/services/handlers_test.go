@@ -1,7 +1,7 @@
 package services
 
 import (
-	. "github.com/smartystreets/goconvey/convey"
+	"github.com/smartystreets/goconvey/convey"
 	"testing"
 	"net/http/httptest"
         "github.com/ed201971/godaddy/accountservice/model"
