@@ -21,10 +21,11 @@ spec:
     spec:
       containers:
       - name: accountservice
-        image: ed201971/godaddy:766c542b
-        #imagePullPolicy: Never
+        image: registry-443.service.consul/linux/app:766c542b8273fbb5a0a0951eb11da1bf5dcb322f
         ports:
         - containerPort: 6767
+      imagePullSecrets:
+      - name: regcred
 ---
 apiVersion: v1
 kind: Service
