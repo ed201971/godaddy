@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accountservice
+  labels:
+    app: goapp
+  annotations:
+    flux.weave.works/automated: "true"
+    #flux.weave.works/tag.realtime: semver:~1.0
+    #fluxcd.io/locked: 'true'
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: goapp
+  template:
+    metadata:
+      labels:
+        app: goapp
+    spec:
+      containers:
+      - name: accountservice
+        image: registry-443.service.consul/linux/app:cb8df07bbea81f97a08693d8ca506a8da29e5ba9
+        ports:
+        - containerPort: 6767
+      imagePullSecrets:
+      - name: regcred
