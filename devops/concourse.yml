@@ -8,7 +8,7 @@ jobs:
   - get: godaddy
     trigger: true
   - get: version
-    params: {bump: minor}
+    params: {bump: patch}
   - task: get-dockerfile
     config:
       platform: linux
@@ -31,12 +31,14 @@ jobs:
             go get ./...
             go test ./...
             ./devops/copyall.sh
-
+            ls -la
+            cat version
   - put: docker-image
     params: 
       build: godaddy/devops
-      tag_file: godaddy/.git/ref
-      tag_prefix: splain
+      additional_tags: version/number
+     # tag_file: godaddy/.git/ref
+     # tag_prefix: splain
   - put: version
     params: {file: version/version} 
 
@@ -52,6 +54,8 @@ resources:
   source:
     driver: git
     uri: https://github.com/ed201971/godaddy.git 
+    username: ed201971
+    password: P0rka_26
     branch: master 
     file: version
     initial_version: 0.0.0
