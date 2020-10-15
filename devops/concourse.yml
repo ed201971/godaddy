@@ -52,7 +52,7 @@ resources:
   source:
     driver: git
     uri: https://github.com/ed201971/godaddy.git 
-    branch: version
+    branch: master 
     file: version
     initial_version: 0.0.0
 
