@@ -7,6 +7,8 @@ jobs:
   plan:
   - get: godaddy
     trigger: true
+  - get: version
+    params: {bump: minor}
   - task: get-dockerfile
     config:
       platform: linux
@@ -34,6 +36,9 @@ jobs:
     params: 
       build: godaddy/devops
       tag_file: godaddy/.git/ref
+      tag_prefix: splain
+  - put: version
+    params: {file: version/version} 
 
 resources:
 - name: godaddy
@@ -41,6 +46,15 @@ resources:
   source:
     # private_key: ((ssh_key)) 
     uri: https://github.com/ed201971/godaddy.git 
+
+- name: version
+  type: semver
+  source:
+    driver: git
+    uri: https://github.com/ed201971/godaddy.git 
+    branch: version
+    file: version
+    initial_version: 0.0.0
 
 - name: docker-image
   type: docker-image
