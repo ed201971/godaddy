@@ -1,12 +1,16 @@
 ---
 jobs:
 
-- name: build-go-app
+- name: build-go-app-master
   public: true
   serial: true
   plan:
-  - get: godaddy
+  - get: godaddy-master
     trigger: true
+  - get: docker-image
+    params: 
+      tag: 0.0.4
+      save: true
   - get: version
     params: {bump: patch}
   - task: get-dockerfile
@@ -15,11 +19,37 @@ jobs:
       image_resource:
         type: docker-image
         source: {repository: golang}
-
       inputs:
-      - name: godaddy
-        path: go/src/github.com/ed201971/godaddy/
+      - name: docker-image
+      run:
+        path: /bin/sh
+        args:
+          - -c
+          - |
+            ls -la
+  - put: docker-image
+    params: 
+      # build: godaddy/devops
+      # load: 
+      additional_tags: version/number
+  - put: version
+    params: {file: version/version} 
 
+- name: build-go-app-dev
+  public: true
+  serial: true
+  plan:
+  - get: godaddy-dev
+    trigger: true
+  - task: get-dockerfile
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: golang}
+      inputs:
+      - name: godaddy-dev
+        path: go/src/github.com/ed201971/godaddy/
       run:
         path: /bin/sh
         args:
@@ -31,23 +61,24 @@ jobs:
             go get ./...
             go test ./...
             ./devops/copyall.sh
-            ls -la
-            cat version
   - put: docker-image
     params: 
       build: godaddy/devops
-      additional_tags: version/number
-     # tag_file: godaddy/.git/ref
-     # tag_prefix: splain
-  - put: version
-    params: {file: version/version} 
+      tag_file: godaddy/.git/ref
+      tag_prefix: splain
 
 resources:
-- name: godaddy
+- name: godaddy-master
   type: git
   source:
-    # private_key: ((ssh_key)) 
-    uri: https://github.com/ed201971/godaddy.git 
+    uri: https://github.com/ed201971/godaddy.git
+    branch: master
+
+- name: godaddy-dev
+  type: git
+  source:
+    uri: https://github.com/ed201971/godaddy.git
+    branch: dev
 
 - name: version
   type: semver
