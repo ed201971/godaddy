@@ -26,9 +26,8 @@ jobs:
             cd go/src/github.com/ed201971/godaddy/
             go get ./...
             go test ./...
-            ./devops/copyall.sh
-            ls -la
-            ls -la devops
+            cd devops/
+            ./copyall.sh
   - put: docker-image
     params: 
       build: godaddy-dev/devops
