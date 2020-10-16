@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: accountservice
-        image: registry-443.service.consul/linux/app:0.0.5
+        image: registry-443.service.consul/linux/app
         ports:
         - containerPort: 6767
       imagePullSecrets:
