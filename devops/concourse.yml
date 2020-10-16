@@ -1,40 +1,6 @@
 ---
 jobs:
 
-- name: build-go-app-master
-  public: true
-  serial: true
-  plan:
-  - get: godaddy-master
-    trigger: true
-  - get: docker-image
-    params: 
-      tag: 0.0.4
-      save: true
-  - get: version
-    params: {bump: patch}
-  - task: get-dockerfile
-    config:
-      platform: linux
-      image_resource:
-        type: docker-image
-        source: {repository: golang}
-      inputs:
-      - name: docker-image
-      run:
-        path: /bin/sh
-        args:
-          - -c
-          - |
-            ls -la
-  - put: docker-image
-    params: 
-      # build: godaddy/devops
-      # load: 
-      additional_tags: version/number
-  - put: version
-    params: {file: version/version} 
-
 - name: build-go-app-dev
   public: true
   serial: true
@@ -63,11 +29,32 @@ jobs:
             ./devops/copyall.sh
   - put: docker-image
     params: 
-      build: godaddy/devops
-      tag_file: godaddy/.git/ref
+      build: godaddy-dev/devops
+      tag_file: godaddy-dev/.git/ref
       tag_prefix: splain
+      labels:
+        commit: godaddy-dev/.git/ref
+
+- name: build-go-app-master
+  public: true
+  serial: true
+  plan:
+  - get: godaddy-master
+  - get: docker-image
+    params: 
+      tag: godaddy-master/.git/ref
+      save: true
+  - get: version
+    params: {bump: patch}
+  - put: docker-image
+    params: 
+      load: docker-image
+      additional_tags: version/number
+  - put: version
+    params: {file: version/version} 
 
 resources:
+
 - name: godaddy-master
   type: git
   source:
@@ -85,8 +72,8 @@ resources:
   source:
     driver: git
     uri: https://github.com/ed201971/godaddy.git 
-    username: ed201971
-    password: P0rka_26
+    username: ((dockerhub_login))
+    password: ((dockerhub_password))
     branch: master 
     file: version
     initial_version: 0.0.0

@@ -7,7 +7,7 @@ metadata:
     app: goapp
   annotations:
     flux.weave.works/automated: "true"
-    #flux.weave.works/tag.realtime: semver:~1.0
+    flux.weave.works/tag.realtime: semver:~0.0
     #fluxcd.io/locked: 'true'
 spec:
   replicas: 2
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: accountservice
-        image: registry-443.service.consul/linux/app:0.0.5
+        image: registry-443.service.consul/linux/app
         ports:
         - containerPort: 6767
       imagePullSecrets:
