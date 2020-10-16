@@ -31,7 +31,7 @@ jobs:
     params: 
       build: godaddy-dev/devops
       tag_file: godaddy-dev/.git/ref
-      tag_prefix: splain
+      tag_prefix: dev-
       labels:
         commit: godaddy-dev/.git/ref
 
