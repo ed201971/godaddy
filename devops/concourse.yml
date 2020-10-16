@@ -27,6 +27,8 @@ jobs:
             go get ./...
             go test ./...
             ./devops/copyall.sh
+            ls -la
+            ls -la devops
   - put: docker-image
     params: 
       build: godaddy-dev/devops
