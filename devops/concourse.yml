@@ -7,7 +7,7 @@ jobs:
   plan:
   - get: godaddy-dev
     trigger: true
-  - task: get-dockerfile
+  - task: build-application
     config:
       platform: linux
       image_resource:
@@ -16,21 +16,26 @@ jobs:
       inputs:
       - name: godaddy-dev
         path: go/src/github.com/ed201971/godaddy/
+      outputs:
+      - name: image
       run:
         path: /bin/sh
         args:
           - -c
           - |
             GOPATH=$PWD/go
+            ROOTDIR=$PWD
             go get github.com/smartystreets/goconvey/convey
             cd go/src/github.com/ed201971/godaddy/
             go get ./...
             go test ./...
-            cd devops/
-            ./copyall.sh
+            ./devops/copyall.sh
+            cp devops/Dockerfile $ROOTDIR/image/.
+            cp devops/accountservice-linux-amd64 $ROOTDIR/image/.
+            cp devops/healthchecker-linux-amd64 $ROOTDIR/image/.
   - put: docker-image
     params: 
-      build: godaddy-dev/devops
+      build: image 
       tag_file: godaddy-dev/.git/ref
       tag_prefix: dev-
       labels:
