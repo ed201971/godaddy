@@ -30,7 +30,7 @@ var routes = Routes {
 	Route {
 		"Testability",
 		"GET",
-		"/testability/healthy/{state}",
+		"/testability/healthxyz/{state}",
 		SetHealthyState,
 	},
 
