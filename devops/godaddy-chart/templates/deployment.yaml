@@ -5,10 +5,10 @@ metadata:
   name: accountservice
   labels:
     app: goapp
-  annotations:
-    flux.weave.works/automated: "true"
-    #flux.weave.works/tag.realtime: semver:~1.0
-    #fluxcd.io/locked: 'true'
+#  annotations:
+#    flux.weave.works/automated: "true"
+#    #flux.weave.works/tag.realtime: semver:~1.0
+#    #fluxcd.io/locked: 'true'
 spec:
   replicas: 2
   selector:
@@ -21,7 +21,8 @@ spec:
     spec:
       containers:
       - name: accountservice
-        image: registry-443.service.consul/linux/app:cb8df07bbea81f97a08693d8ca506a8da29e5ba9
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}" 
+        #image: registry-443.service.consul/linux/app:cb8df07bbea81f97a08693d8ca506a8da29e5ba9
         ports:
         - containerPort: 6767
       imagePullSecrets:
