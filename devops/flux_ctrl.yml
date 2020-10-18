@@ -295,4 +295,18 @@ metadata:
   name: flux-git-deploy
   namespace: flux
 type: Opaque
-
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: godaddy-dev
+  namespace: dev
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:dev-*
+spec:
+  releaseName: godaddy-dev
+  chart:
+    git: git@github.com:ed201971/godaddy
+    path: devops/godaddy-chart
+    ref: master

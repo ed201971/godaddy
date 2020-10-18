@@ -1,0 +1,4 @@
+image:
+  repository: registry-443.service.consul/linux/app
+  tag: 0.0.0
+  pullPolicy: IfNotPresent
