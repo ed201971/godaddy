@@ -309,4 +309,4 @@ spec:
   chart:
     git: git@github.com:ed201971/godaddy
     path: devops/godaddy-chart
-    ref: master
+    ref: dev 
