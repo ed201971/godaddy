@@ -239,10 +239,10 @@ spec:
         # HTTP basic auth credentials can be supplied using environment variables:
         # https://$(GIT_AUTHUSER):$(GIT_AUTHKEY)@github.com/user/repository.git
         - --git-url=git@github.com:ed201971/godaddy
-        #- --git-branch=master
+        - --git-branch=dev
         #- --git-path=devops
         #- --git-label=flux
-        #- --git-user=ed201971
+        - --git-user=ed201971
         #- --git-email=ed201971@users.noreply.github.com
         #- --git-ci-skip=true
         # - --registry.dockercfg.enabled=true \
