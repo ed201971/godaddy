@@ -245,6 +245,9 @@ spec:
         #- --git-user=ed201971
         #- --git-email=ed201971@users.noreply.github.com
         #- --git-ci-skip=true
+        # - --registry.dockercfg.enabled=true \
+        # - --registry.dockercfg.secretName=docker-config \
+        # - --registry.includeImage="registry-443.service.consul/*
 
         # Include these two to enable git commit signing
         # - --git-gpg-key-import=/root/gpg-import
@@ -295,18 +298,23 @@ metadata:
   name: flux-git-deploy
   namespace: flux
 type: Opaque
----
-apiVersion: helm.fluxcd.io/v1
-kind: HelmRelease
-metadata:
-  name: godaddy-dev
-  namespace: default 
-  annotations:
-    fluxcd.io/automated: "true"
-    filter.fluxcd.io/chart-image: glob:dev-*
-spec:
-  releaseName: godaddy-dev
-  chart:
-    git: git@github.com:ed201971/godaddy
-    path: devops/godaddy-chart
-    ref: dev 
+# ---
+# apiVersion: helm.fluxcd.io/v1
+# kind: HelmRelease
+# metadata:
+#   name: godaddy-dev
+#   namespace: default 
+#   annotations:
+#     fluxcd.io/automated: "true"
+#     filter.fluxcd.io/chart-image: glob:dev-*
+# spec:
+#   releaseName: godaddy-dev
+#   chart:
+#     git: git@github.com:ed201971/godaddy
+#     path: devops/godaddy-chart
+#     ref: dev
+#   values:
+#     image:
+#       repository: registry-443.service.consul/linux/app
+#       tag: dev-f0696e4b64618f3a46562690ed39d785c28b3ce8
+#     # replicaCount: 1
