@@ -1,13 +1,10 @@
 #!/bin/bash
 export GOOS=linux
 export CGO_ENABLED=0
-export GOPATH=$PWD/go
-export ROOTDIR=$PWD
+export GOPATH=$ROOTDIR/go
 
-echo $PWD
 #Get dependencies and test
 go get github.com/smartystreets/goconvey/convey
-cd go/src/github.com/ed201971/godaddy/
 go get ./...
 go test ./...
 
