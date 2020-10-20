@@ -67,6 +67,8 @@ resources:
   source:
     uri: https://github.com/ed201971/godaddy.git
     branch: dev
+    ignore_paths:
+    - devops/concourse.yml
 
 - name: version
   type: semver
