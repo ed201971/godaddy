@@ -23,6 +23,8 @@ jobs:
         args:
           - -c
           - |
+              env
+              ls -la
               export ROOTDIR=$PWD
               cd go/src/github.com/ed201971/godaddy/
               ./devops/build-context.sh
