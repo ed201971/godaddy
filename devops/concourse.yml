@@ -23,7 +23,6 @@ jobs:
         args:
           - -c
           - |
-              ls -la
               env
               export ROOTDIR=$PWD
               cd go/src/github.com/ed201971/godaddy/
