@@ -1,0 +1,19 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: godaddy-dev
+  namespace: dev
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:dev-*
+spec:
+  releaseName: godaddy-dev
+  chart:
+    git: git@github.com:ed201971/godaddy
+    path: devops/godaddy-chart
+    ref: dev
+  values:
+    image:
+      repository: registry-443.service.consul/linux/app
+      tag: dev-7c782f7a6100148acab4c1942990029c53c20e4a

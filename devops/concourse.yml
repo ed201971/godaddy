@@ -1,11 +1,11 @@
 ---
 jobs:
 
-- name: build-go-app-dev
+- name: compile-go-app
   public: true
   serial: true
   plan:
-  - get: godaddy-dev
+  - get: dev-branch
     trigger: true
   - task: build-application
     config:
@@ -14,7 +14,7 @@ jobs:
         type: docker-image
         source: {repository: golang}
       inputs:
-      - name: godaddy-dev
+      - name: dev-branch
         path: go/src/github.com/ed201971/godaddy/
       outputs:
       - name: image
@@ -23,32 +23,26 @@ jobs:
         args:
           - -c
           - |
-            GOPATH=$PWD/go
-            ROOTDIR=$PWD
-            go get github.com/smartystreets/goconvey/convey
-            cd go/src/github.com/ed201971/godaddy/
-            go get ./...
-            go test ./...
-            ./devops/copyall.sh
-            cp devops/Dockerfile $ROOTDIR/image/.
-            cp devops/accountservice-linux-amd64 $ROOTDIR/image/.
-            cp devops/healthchecker-linux-amd64 $ROOTDIR/image/.
+              env
+              export ROOTDIR=$PWD
+              cd go/src/github.com/ed201971/godaddy/
+              ./devops/build-context.sh
   - put: docker-image
     params: 
       build: image 
-      tag_file: godaddy-dev/.git/ref
+      tag_file: dev-branch/.git/ref
       tag_prefix: dev-
       labels:
-        commit: godaddy-dev/.git/ref
+        commit: dev-branch/.git/ref
 
-- name: build-go-app-master
+- name: master-release
   public: true
   serial: true
   plan:
-  - get: godaddy-master
+  - get: master-branch
   - get: docker-image
     params: 
-      tag: godaddy-master/.git/ref
+      tag: master-branch/.git/ref
       save: true
   - get: version
     params: {bump: patch}
@@ -61,17 +55,19 @@ jobs:
 
 resources:
 
-- name: godaddy-master
+- name: master-branch
   type: git
   source:
     uri: https://github.com/ed201971/godaddy.git
     branch: master
 
-- name: godaddy-dev
+- name: dev-branch
   type: git
   source:
     uri: https://github.com/ed201971/godaddy.git
     branch: dev
+    ignore_paths:
+    - devops/concourse.yml
 
 - name: version
   type: semver
