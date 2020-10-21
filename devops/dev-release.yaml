@@ -3,7 +3,7 @@ apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   name: godaddy-dev
-  namespace: dev
+  namespace: default
   annotations:
     fluxcd.io/automated: "true"
     filter.fluxcd.io/chart-image: glob:dev-*
@@ -12,4 +12,4 @@ spec:
   chart:
     git: git@github.com:ed201971/godaddy
     path: devops/godaddy-chart
-    ref: master
+    ref: dev 
