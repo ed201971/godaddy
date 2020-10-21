@@ -244,7 +244,7 @@ spec:
         #- --git-label=flux
         - --git-user=ed201971
         #- --git-email=ed201971@users.noreply.github.com
-        #- --git-ci-skip=true
+        - --git-ci-skip=true
         # - --registry.dockercfg.enabled=true \
         # - --registry.dockercfg.secretName=docker-config \
         # - --registry.includeImage="registry-443.service.consul/*
