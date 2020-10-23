@@ -12,8 +12,8 @@ spec:
   chart:
     git: git@github.com:ed201971/godaddy
     path: devops/godaddy-chart
-    ref: master 
+    ref: master
   values:
     image:
       repository: registry-443.service.consul/linux/app
-      tag: 0.0.24
+      tag: 0.0.25
