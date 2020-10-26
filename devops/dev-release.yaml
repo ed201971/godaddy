@@ -16,4 +16,4 @@ spec:
   values:
     image:
       repository: registry-443.service.consul/linux/app
-      tag: dev-b57de85b44b6d4288941255335bae66f9fb60f9d
+      tag: dev-ddfb58e4206f94ae4812b2b26aa547d1e8925c36
