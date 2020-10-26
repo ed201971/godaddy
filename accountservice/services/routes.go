@@ -23,7 +23,7 @@ var routes = Routes {
 	Route{
         "HealthCheck",
         "GET",
-        "/health",
+        "/healthy",
         HealthCheck,
 	},
 
