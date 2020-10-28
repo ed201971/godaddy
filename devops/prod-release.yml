@@ -16,4 +16,4 @@ spec:
   values:
     image:
       repository: registry-443.service.consul/linux/app
-      tag: 0.0.30
+      tag: 0.0.31
